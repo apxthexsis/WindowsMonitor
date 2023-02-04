@@ -1,6 +1,5 @@
 from WindowsMonitor import WindowsMonitor
 from injector import Injector, singleton, inject
-import argparse
 import sys
 import threading
 
@@ -26,6 +25,7 @@ class Menu:
     def check_conditions(self, choice):
         thread_is_not_alive = self.monitor_thread is None or not self.monitor_thread.is_alive()
         thread_is_alive = self.monitor_thread is not None and self.monitor_thread.is_alive()
+        
         if choice == 1:
             if thread_is_not_alive:
                 self.monitor_thread = threading.Thread(target=self.monitor.start_monitoring)
